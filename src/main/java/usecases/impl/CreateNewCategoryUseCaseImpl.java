@@ -1,7 +1,7 @@
 package usecases.impl;
 
 import confighibernate.HibernateUtil;
-import entities.Category;
+import models.Category;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import usecases.usecase.CreateNewCategoryUseCase;

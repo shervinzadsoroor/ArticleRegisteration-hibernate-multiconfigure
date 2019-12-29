@@ -1,7 +1,7 @@
 package usecases.impl;
 
 import confighibernate.HibernateUtil;
-import entities.User;
+import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

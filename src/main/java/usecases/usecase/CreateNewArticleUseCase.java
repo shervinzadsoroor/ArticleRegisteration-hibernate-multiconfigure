@@ -1,6 +1,6 @@
 package usecases.usecase;
 
-import entities.User;
+import models.User;
 
 public interface CreateNewArticleUseCase {
     public void create(User user, String currentDate);

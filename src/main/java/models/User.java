@@ -1,4 +1,4 @@
-package entities;
+package models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,6 +31,14 @@ public class User {
     public List<Article> getArticles() {
         return articles;
     }
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "User_Role",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    List<Role> roles = new ArrayList<>();
     //constructor =======================================
 
     public User() {
@@ -83,7 +91,6 @@ public class User {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-
 
 
     @Override

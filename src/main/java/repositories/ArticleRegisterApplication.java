@@ -1,28 +1,18 @@
 package repositories;
 
-import confighibernate.HibernateUtil;
-import entities.Article;
-import entities.Category;
-import entities.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import org.hibernate.query.Query;
+import models.User;
 import usecases.impl.*;
 import usecases.usecase.*;
 
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Scanner;
 
 public class ArticleRegisterApplication {
 
     public static void main(String[] args) {
+        new BeginHibernateUseCaseImpl().begin();
         Scanner scanner = new Scanner(System.in);
-        ArticleRegisterApplication articleRegisterApplication =
-                new ArticleRegisterApplication();
         String command = null;
 
         User user = null;
@@ -181,7 +171,6 @@ public class ArticleRegisterApplication {
 
                 //----------------------------------------------------------
             }
-
         }
     }
 

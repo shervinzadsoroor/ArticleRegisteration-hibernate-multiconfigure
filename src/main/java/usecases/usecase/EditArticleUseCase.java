@@ -1,6 +1,6 @@
 package usecases.usecase;
 
-import entities.User;
+import models.User;
 
 public interface EditArticleUseCase {
     public void edit(Long id, User user, String currentDate);

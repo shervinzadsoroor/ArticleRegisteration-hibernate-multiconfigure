@@ -1,6 +1,6 @@
 package usecases.usecase;
 
-import entities.User;
+import models.User;
 
 public interface LoginUseCase {
     public User login();

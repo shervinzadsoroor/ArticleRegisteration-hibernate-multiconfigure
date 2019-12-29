@@ -1,6 +1,6 @@
 package usecases.usecase;
 
-import entities.User;
+import models.User;
 
 public interface CountAllArticlesOfUserUseCase {
     public Long count(User user);

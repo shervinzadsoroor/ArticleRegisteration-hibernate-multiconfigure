@@ -36,14 +36,14 @@ public class ArticleRegisterApplication {
 
                     if (user != null) {
                         isAdmin = new DefineAdminUseCaseImpl().isAdmin(user);
-                        System.out.println("  LOGIN SUCCESSFUL !!!");
-                        if (isAdmin){
+                        System.out.println("LOGIN SUCCESSFUL !!!");
+                        if (isAdmin) {
                             System.out.println("HELLO ADMIN !!!");
-                        }else {
+                        } else {
                             System.out.println("HELLO WRITER !!!");
                         }
                     } else {
-                        System.out.println("  INVALID USERNAME OR PASSWORD !!!");
+                        System.out.println("INVALID USERNAME OR PASSWORD !!!");
                     }
                 }
 
@@ -88,21 +88,21 @@ public class ArticleRegisterApplication {
                     System.out.println("choose an option: ( edit article | publish | delete )");
                     String articleCommand = scanner.nextLine();
                     Long id;
-                    if (articleCommand.equalsIgnoreCase("edit article")) {
+                    if (!isAdmin && articleCommand.equalsIgnoreCase("edit article")) {
                         System.out.println("enter article id: ");
                         id = Long.parseLong(scanner.nextLine());
                         EditArticleUseCase editArticleUseCase =
                                 new EditArticleUseCaseImpl();
                         editArticleUseCase.edit(id, user, currentDate());
                     }
-                    if (articleCommand.equalsIgnoreCase("publish")) {
+                    if (isAdmin && articleCommand.equalsIgnoreCase("publish")) {
                         System.out.println("enter article id: ");
                         id = Long.parseLong(scanner.nextLine());
                         PublishArticleUseCase publishArticleUseCase =
                                 new PublishArticleUseCaseImpl();
                         publishArticleUseCase.publish(id, user, currentDate());
                     }
-                    if (articleCommand.equalsIgnoreCase("delete")) {
+                    if (isAdmin && articleCommand.equalsIgnoreCase("delete")) {
                         System.out.println("enter article id: ");
                         id = Long.parseLong(scanner.nextLine());
                         DeleteArticleUseCase deleteArticleUseCase =

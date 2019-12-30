@@ -1,11 +1,14 @@
 package usecases.impl;
 
 import confighibernate.HibernateUtil;
+import models.Role;
 import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import usecases.usecase.SignUpUseCase;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SignUpUseCaseImpl implements SignUpUseCase {
@@ -29,6 +32,13 @@ public class SignUpUseCaseImpl implements SignUpUseCase {
         User user = new User(username, nationalCode, nationalCode, birthday); // password is the national code for the first time
         Long id = (Long) session.save(user);
         System.out.println("sign up successfully done!!!\nyour id is:" + id);
+
+        //defines the user as writer
+        Role role = session.find(Role.class, 2L); // returns writer
+        List<Role> roles = new ArrayList<>(); // we use list because the user can have many roles
+        roles.add(role);
+
+        user.setRoles(roles);
 
         //====================================
         //transaction commit

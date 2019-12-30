@@ -16,12 +16,25 @@ public class Role {
     @Column(name = "title", nullable = false)
     private String title;
 
+    //------------------------------------------------------------
+
     @ManyToMany(mappedBy = "roles")
     private List<User> users = new ArrayList<>();
+
+    public void addUser(User user) {
+        if (!getUsers().contains(user)) {
+            getUsers().add(user);
+        }
+        if (!user.getRoles().contains(this)) {
+            user.getRoles().add(this);
+        }
+    }
 
     public List<User> getUsers() {
         return users;
     }
+
+    //------------------------------------------------------------
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
@@ -30,6 +43,10 @@ public class Role {
             inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )
     List<Tag> tags = new ArrayList<>();
+
+    public List<Tag> getTags() {
+        return tags;
+    }
 
     public Role() {
     }

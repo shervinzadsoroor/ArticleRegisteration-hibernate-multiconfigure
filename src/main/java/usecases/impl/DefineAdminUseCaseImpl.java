@@ -20,16 +20,10 @@ public class DefineAdminUseCaseImpl implements DefineAdminUseCase {
         //-------------------------------------------------------
 
         boolean bool = false;
-        List<User> admins = new ArrayList<>();
 
-        Query query = session.createQuery(" from User ");
-        List<User> users = query.list();
-        for (User u : users) {
-            if (u.getRoles().get(0).getTitle().equalsIgnoreCase("admin")) {
-                admins.add(u);
-            }
-        }
-        //---------------------------------------------------------
+        Role role = session.find(Role.class, 1L); // returns admin
+        List<User> admins = role.getUsers();
+
         for (User admin : admins) {
             if (admin.getId() == user.getId()) {
                 bool = true;

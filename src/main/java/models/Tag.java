@@ -17,6 +17,10 @@ public class Tag {
     @ManyToMany(mappedBy = "tags")
     private List<Role> roles = new ArrayList<>();
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
     public Tag() {
     }
 

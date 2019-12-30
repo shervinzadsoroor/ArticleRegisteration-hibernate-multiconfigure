@@ -32,10 +32,12 @@ public class ArticleRegisterApplication {
                 else if (command.equalsIgnoreCase("login")) {
                     LoginUseCase loginUseCase = new LoginUseCaseImpl();
                     user = loginUseCase.login();
+                    //todo implement isAdmin method
                     if (user != null) {
-                        System.out.println("    LOGIN SUCCESSFUL !!!");
+                        new DefineAdminUseCaseImpl().isAdmin(user);
+                        System.out.println("  LOGIN SUCCESSFUL !!!");
                     } else {
-                        System.out.println("    INVALID USERNAME OR PASSWORD !!!");
+                        System.out.println("  INVALID USERNAME OR PASSWORD !!!");
                     }
                 }
 

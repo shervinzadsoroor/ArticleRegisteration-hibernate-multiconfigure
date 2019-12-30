@@ -19,6 +19,10 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private List<User> users = new ArrayList<>();
 
+    public List<User> getUsers() {
+        return users;
+    }
+
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "Role_Tag",

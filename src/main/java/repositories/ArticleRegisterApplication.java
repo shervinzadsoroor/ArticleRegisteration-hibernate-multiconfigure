@@ -14,6 +14,7 @@ public class ArticleRegisterApplication {
         new BeginHibernateUseCaseImpl().begin();
         Scanner scanner = new Scanner(System.in);
         String command = null;
+        boolean isAdmin = false;
 
         User user = null;
         while (true) {
@@ -32,10 +33,15 @@ public class ArticleRegisterApplication {
                 else if (command.equalsIgnoreCase("login")) {
                     LoginUseCase loginUseCase = new LoginUseCaseImpl();
                     user = loginUseCase.login();
-                    //todo implement isAdmin method
+
                     if (user != null) {
-                        new DefineAdminUseCaseImpl().isAdmin(user);
+                        isAdmin = new DefineAdminUseCaseImpl().isAdmin(user);
                         System.out.println("  LOGIN SUCCESSFUL !!!");
+                        if (isAdmin){
+                            System.out.println("HELLO ADMIN !!!");
+                        }else {
+                            System.out.println("HELLO WRITER !!!");
+                        }
                     } else {
                         System.out.println("  INVALID USERNAME OR PASSWORD !!!");
                     }

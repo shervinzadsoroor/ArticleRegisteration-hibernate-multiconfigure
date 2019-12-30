@@ -39,6 +39,6 @@ public class DefineAdminUseCaseImpl implements DefineAdminUseCase {
         //-------------------------------------------------------
         session.getTransaction().commit();
         session.close();
-        return false;
+        return bool;
     }
 }

@@ -5,12 +5,12 @@ import models.Article;
 import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.EditArticleUseCase;
+import usecases.usecase.EditArticleByWriterUseCase;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class EditArticleUseCaseImpl implements EditArticleUseCase {
+public class EditArticleByWriterUseCaseImpl implements EditArticleByWriterUseCase {
     @Override
     public void edit(Long id, User user,String currentDate) {
 

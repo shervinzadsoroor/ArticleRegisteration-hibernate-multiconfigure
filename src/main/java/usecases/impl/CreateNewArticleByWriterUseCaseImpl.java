@@ -1,17 +1,17 @@
 package usecases.impl;
 
 import confighibernate.HibernateUtil;
-import models.Article;
-import models.Category;
-import models.User;
+import models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.CreateNewArticleUseCase;
+import org.hibernate.query.Query;
+import usecases.usecase.CreateNewArticleByWriterUseCase;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CreateNewArticleUseCaseImpl implements CreateNewArticleUseCase {
+public class CreateNewArticleByWriterUseCaseImpl implements CreateNewArticleByWriterUseCase {
     @Override
     public void create(User user, String currentDate) {
 
@@ -65,6 +65,42 @@ public class CreateNewArticleUseCaseImpl implements CreateNewArticleUseCase {
                 null, isPublished, user, category);
 
         session.save(article); // insert into article
+
+        //===============================================================
+
+        //shows all tags to the writer
+        Query<Tag> tagQuery = session.createQuery("from Tag ");
+        List<Tag> tagList = tagQuery.list();
+        for (Tag tag : tagList) {
+            System.out.println(tag.toString());
+        }
+        //end of show
+
+        //validating the tag id ==========================
+        boolean isTagExist = false;
+        System.out.println("enter tag id:");
+        Long tagId = null;
+        while (!isTagExist) {
+            tagId = scannerLong.nextLong();
+            List<Long> tagIds = session.createQuery("select id from Tag ")
+                    .list();
+            for (Long L : tagIds) {
+                if (L == tagId) {
+                    isTagExist = true;
+                }
+            }
+            if (!isTagExist) {
+                System.out.println("tag not found, enter an existing tag id: ");
+            }
+        }
+        //================================================
+
+        //defines the article's tag
+        Tag tag = session.load(Tag.class, tagId); // returns the tag
+        List<Tag> tags = new ArrayList<>(); // we use list because the user can have many roles
+        tags.add(tag);
+
+        article.setTags(tags);
 
 
         //====================================

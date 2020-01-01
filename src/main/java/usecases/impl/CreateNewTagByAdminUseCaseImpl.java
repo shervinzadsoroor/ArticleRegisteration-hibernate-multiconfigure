@@ -2,13 +2,14 @@ package usecases.impl;
 
 import confighibernate.HibernateUtil;
 import models.Category;
+import models.Tag;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.CreateNewCategoryUseCase;
+import usecases.usecase.CreateNewTagByAdminUseCase;
 
 import java.util.Scanner;
 
-public class CreateNewCategoryUseCaseImpl implements CreateNewCategoryUseCase {
+public class CreateNewTagByAdminUseCaseImpl implements CreateNewTagByAdminUseCase {
     @Override
     public void create() {
 
@@ -21,13 +22,11 @@ public class CreateNewCategoryUseCaseImpl implements CreateNewCategoryUseCase {
         session.beginTransaction();
         //====================================
 
-        System.out.println("category title: ");
+        System.out.println("tag title: ");
         String title = scanner.nextLine();
-        System.out.println("category description: ");
-        String description = scanner.nextLine();
 
-        Category category = new Category(title, description);
-        session.save(category); // insert into category
+        Tag tag = new Tag(title);
+        session.save(tag); // insert into Tag
 
         //====================================
         //transaction commit

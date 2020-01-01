@@ -1,15 +1,18 @@
 package usecases.impl;
 
 import confighibernate.HibernateUtil;
+import models.Article;
+import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.ShowSpecificArticleUseCase;
+import usecases.usecase.DeleteArticleByAdminUseCase;
 
 import java.util.List;
 
-public class ShowSpecificArticleUseCaseImpl implements ShowSpecificArticleUseCase {
+public class DeleteArticleByAdminUseCaseImpl implements DeleteArticleByAdminUseCase {
     @Override
-    public void show(Long id) {
+    public void delete(Long id) {
+
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         //get session
@@ -17,20 +20,22 @@ public class ShowSpecificArticleUseCaseImpl implements ShowSpecificArticleUseCas
         //transaction start
         session.beginTransaction();
         //====================================
+        boolean isIdExist = false;
 
-        List list = session.createQuery("from Article where id=:id")
-                .setParameter("id", id)
+        List<Long> idList = session.createQuery("select id from Article ")
                 .list();
-        if (list.size() > 0) {
-            System.out.println("\n" +
-                    " Article\n==========================================");
-
-            System.out.println(list.get(0).toString());
-
-            System.out.println("==========================================");
-        } else {
-            System.out.println("id not found !!!");
+        for (Long articleId : idList) {
+            if (id == articleId) {
+                isIdExist = true;
+            }
         }
+        Article article = session.load(Article.class, id);
+        if (isIdExist) {
+            session.remove(article);
+        } else {
+            System.out.println("ID NOT FOUND !!!");
+        }
+
         //====================================
         //transaction commit
         session.getTransaction().commit();

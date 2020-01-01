@@ -47,6 +47,10 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
     //constructor =======================================
 
     public User() {

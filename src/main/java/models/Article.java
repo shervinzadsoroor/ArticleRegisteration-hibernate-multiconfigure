@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Article")
@@ -36,6 +38,23 @@ public class Article {
 
     @OneToOne
     private Category category;
+
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "Article_Tag",
+            joinColumns = {@JoinColumn(name = "article_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
+    )
+    List<Tag> tags = new ArrayList<>();
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
 
     //constructors ===========================================
     public Article() {
@@ -162,7 +181,7 @@ public class Article {
     }
 
 
-    public void printBrief(){
-        System.out.printf("%-5d%-20s%-30s\n",id,title,brief);
+    public void printBrief() {
+        System.out.printf("%-5d%-20s%-30s\n", id, title, brief);
     }
 }

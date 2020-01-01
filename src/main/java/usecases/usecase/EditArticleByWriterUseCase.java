@@ -2,6 +2,6 @@ package usecases.usecase;
 
 import models.User;
 
-public interface EditArticleUseCase {
+public interface EditArticleByWriterUseCase {
     public void edit(Long id, User user, String currentDate);
 }

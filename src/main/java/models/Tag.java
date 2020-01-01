@@ -15,14 +15,25 @@ public class Tag {
     private String title;
 
     @ManyToMany(mappedBy = "tags")
-    private List<Role> roles = new ArrayList<>();
+    private List<Article> articles = new ArrayList<>();
 
-    public List<Role> getRoles() {
-        return roles;
+    public List<Article> getRoles() {
+        return articles;
     }
+
+    public void setRoles(List<Article> roles) {
+        this.articles = roles;
+    }
+
+    //constructors-----------------------------------------------------
 
     public Tag() {
     }
+
+    public Tag(String title) {
+        this.title = title;
+    }
+    //-----------------------------------------------------------------
 
     public Long getId() {
         return id;

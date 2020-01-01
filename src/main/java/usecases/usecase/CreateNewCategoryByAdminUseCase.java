@@ -1,5 +1,5 @@
 package usecases.usecase;
 
-public interface CreateRoleUseCase {
+public interface CreateNewCategoryByAdminUseCase {
     public void create();
 }

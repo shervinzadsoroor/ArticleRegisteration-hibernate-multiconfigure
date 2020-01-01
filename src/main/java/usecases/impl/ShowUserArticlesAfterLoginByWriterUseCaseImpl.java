@@ -3,11 +3,11 @@ package usecases.impl;
 import confighibernate.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.ShowUserArticlesAfterLoginUseCase;
+import usecases.usecase.ShowUserArticlesAfterLoginByWriterUseCase;
 
 import java.util.List;
 
-public class ShowUserArticlesAfterLoginUseCaseImpl implements ShowUserArticlesAfterLoginUseCase {
+public class ShowUserArticlesAfterLoginByWriterUseCaseImpl implements ShowUserArticlesAfterLoginByWriterUseCase {
     @Override
     public void show(Long id) { SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 

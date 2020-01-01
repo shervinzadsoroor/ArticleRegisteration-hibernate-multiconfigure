@@ -1,5 +1,5 @@
 package usecases.usecase;
 
-public interface ShowUserArticlesAfterLoginUseCase {
+public interface ShowSpecificArticleByAdminUseCase {
     public void show(Long id);
 }

@@ -21,32 +21,24 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private List<User> users = new ArrayList<>();
 
-    public void addUser(User user) {
-        if (!getUsers().contains(user)) {
-            getUsers().add(user);
-        }
-        if (!user.getRoles().contains(this)) {
-            user.getRoles().add(this);
-        }
-    }
+//    public void addUser(User user) {
+//        if (!getUsers().contains(user)) {
+//            getUsers().add(user);
+//        }
+//        if (!user.getRoles().contains(this)) {
+//            user.getRoles().add(this);
+//        }
+//    }
 
     public List<User> getUsers() {
         return users;
     }
 
-    //------------------------------------------------------------
-
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "Role_Tag",
-            joinColumns = {@JoinColumn(name = "role_id")},
-            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
-    )
-    List<Tag> tags = new ArrayList<>();
-
-    public List<Tag> getTags() {
-        return tags;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
+
+
 
     public Role() {
     }

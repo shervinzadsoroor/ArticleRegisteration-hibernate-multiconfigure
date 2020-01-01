@@ -4,11 +4,11 @@ import confighibernate.HibernateUtil;
 import models.Article;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.SearchByTitleUseCase;
+import usecases.usecase.SearchTitleByAdminUseCase;
 
 import java.util.List;
 
-public class SearchByTitleUseCaseImpl implements SearchByTitleUseCase {
+public class SearchTitleByAdminUseCaseImpl implements SearchTitleByAdminUseCase {
     @Override
     public void search(String title) {
 

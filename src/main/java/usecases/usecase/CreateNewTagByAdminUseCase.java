@@ -1,5 +1,5 @@
 package usecases.usecase;
 
-public interface CreateTagUseCase {
+public interface CreateNewTagByAdminUseCase {
     public void create();
 }

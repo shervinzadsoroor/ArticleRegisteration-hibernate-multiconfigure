@@ -1,5 +1,5 @@
 package usecases.usecase;
 
-public interface SearchByTitleUseCase {
+public interface SearchTitleByAdminUseCase {
     public void search(String title);
 }

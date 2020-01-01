@@ -2,24 +2,21 @@ package usecases.impl;
 
 import confighibernate.HibernateUtil;
 import models.Article;
-import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.PublishArticleUseCase;
+import usecases.usecase.UnPublishArticleByAdminUseCase;
 
 import java.util.List;
 
-public class PublishArticleUseCaseImpl implements PublishArticleUseCase {
+public class UnPublishArticleByAdminUseCaseImpl implements UnPublishArticleByAdminUseCase {
     @Override
-    public void publish(Long id, User user, String currentDate) {
+    public void unPublish(Long id, String currentDate) {
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-
-        //get session
         Session session = sessionFactory.openSession();
-        //transaction start
         session.beginTransaction();
-        //====================================
+        //----------------------------------------------------
+
         boolean isIdExist = false;
 
         List<Long> idList = session.createQuery("select id from Article ")
@@ -31,21 +28,16 @@ public class PublishArticleUseCaseImpl implements PublishArticleUseCase {
         }
         Article article = session.load(Article.class, id);
         if (isIdExist) {
-            if (article.getUser().getId() == user.getId()) {
+            article.setPublishDate(null);
+            article.setLastUpdateDate(currentDate);
+            article.setPublished("no");
 
-                article.setPublishDate(currentDate);
-                article.setLastUpdateDate(currentDate);
-                article.setPublished("yes");
-
-                session.update(article);
-            } else {
-                System.out.println("THE ARTICLE IS NOT YOURS !!!");
-            }
+            session.update(article);
         } else {
             System.out.println("ID NOT FOUND !!!");
         }
-        //====================================
-        //transaction commit
+
+        //----------------------------------------------------
         session.getTransaction().commit();
         session.close();
     }

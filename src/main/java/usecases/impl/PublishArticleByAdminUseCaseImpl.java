@@ -5,13 +5,13 @@ import models.Article;
 import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.DeleteArticleUseCase;
+import usecases.usecase.PublishArticleByAdminUseCase;
 
 import java.util.List;
 
-public class DeleteArticleUseCaseImpl implements DeleteArticleUseCase {
+public class PublishArticleByAdminUseCaseImpl implements PublishArticleByAdminUseCase {
     @Override
-    public void delete(Long id, User user) {
+    public void publish(Long id, String currentDate) {
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
@@ -31,15 +31,14 @@ public class DeleteArticleUseCaseImpl implements DeleteArticleUseCase {
         }
         Article article = session.load(Article.class, id);
         if (isIdExist) {
-            if (article.getUser().getId() == user.getId()) {
-                session.remove(article);
-            } else {
-                System.out.println("THE ARTICLE IS NOT YOURS !!!");
-            }
+            article.setPublishDate(currentDate);
+            article.setLastUpdateDate(currentDate);
+            article.setPublished("yes");
+
+            session.update(article);
         } else {
             System.out.println("ID NOT FOUND !!!");
         }
-
         //====================================
         //transaction commit
         session.getTransaction().commit();

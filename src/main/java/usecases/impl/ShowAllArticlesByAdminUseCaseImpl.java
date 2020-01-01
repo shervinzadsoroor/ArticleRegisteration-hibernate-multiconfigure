@@ -5,11 +5,11 @@ import models.Article;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import usecases.usecase.ShowAllArticlesUseCase;
+import usecases.usecase.ShowAllArticlesByAdminUseCase;
 
 import java.util.List;
 
-public class ShowAllArticlesUseCaseImpl implements ShowAllArticlesUseCase {
+public class ShowAllArticlesByAdminUseCaseImpl implements ShowAllArticlesByAdminUseCase {
     @Override
     public void show() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

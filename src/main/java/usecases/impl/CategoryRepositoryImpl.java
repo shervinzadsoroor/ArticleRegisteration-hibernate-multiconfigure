@@ -4,12 +4,12 @@ import confighibernate.HibernateUtil;
 import models.Category;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.CreateNewCategoryByAdminUseCase;
+import usecases.usecase.CategoryRepository;
 
+import java.util.List;
 import java.util.Scanner;
 
-public class CreateNewCategoryByAdminUseCaseImpl implements CreateNewCategoryByAdminUseCase {
-    @Override
+public class CategoryRepositoryImpl implements CategoryRepository {
     public void create() {
 
         Scanner scanner = new Scanner(System.in);
@@ -34,4 +34,27 @@ public class CreateNewCategoryByAdminUseCaseImpl implements CreateNewCategoryByA
         session.getTransaction().commit();
         session.close();
     }
-}
+    public void show() {
+
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+        //get session
+        Session session = sessionFactory.openSession();
+        //transaction start
+        session.beginTransaction();
+        //====================================
+
+        List list = session.createQuery("from Category")
+                .list();
+        System.out.println("\nCATEGORY TITLES\n==========================================");
+        for (Object title : list) {
+
+            System.out.println(title.toString());
+        }
+        System.out.println("==========================================");
+
+        //====================================
+        //transaction commit
+        session.getTransaction().commit();
+        session.close();
+    }}

@@ -32,6 +32,7 @@ public class User {
         return articles;
     }
 
+
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "User_Role",

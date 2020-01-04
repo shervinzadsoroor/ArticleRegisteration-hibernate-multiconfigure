@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ArticleRegisterationWthHibernate" />
         <module name="ArticleRegisterationWthHibernate2" />
+        <module name="ArticleRegisterationWthHibernate" />
+        <module name="ArticleRegisterationWthHibernate2 - with repository" />
       </profile>
     </annotationProcessing>
   </component>

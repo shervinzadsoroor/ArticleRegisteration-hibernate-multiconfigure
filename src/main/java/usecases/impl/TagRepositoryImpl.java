@@ -1,16 +1,17 @@
 package usecases.impl;
 
 import confighibernate.HibernateUtil;
-import models.User;
+import models.Tag;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import usecases.usecase.CountPublishedArticlesOfUserUseCase;
+import usecases.usecase.TagRepository;
 
-public class CountPublishedArticlesOfUserUseCaseImpl implements CountPublishedArticlesOfUserUseCase {
-    @Override
-    public Long count(User user) {
+import java.util.Scanner;
 
+public class TagRepositoryImpl implements TagRepository {
+    public void create() {
+
+        Scanner scanner = new Scanner(System.in);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         //get session
@@ -19,14 +20,15 @@ public class CountPublishedArticlesOfUserUseCaseImpl implements CountPublishedAr
         session.beginTransaction();
         //====================================
 
-        Query query = session.createQuery("select count(id) from Article  where user.id=:id and isPublished='yes'")
-                .setParameter("id", user.getId());
-        Long count = (Long) query.uniqueResult();
+        System.out.println("tag title: ");
+        String title = scanner.nextLine();
+
+        Tag tag = new Tag(title);
+        session.save(tag); // insert into Tag
 
         //====================================
         //transaction commit
         session.getTransaction().commit();
         session.close();
-        return count;
     }
 }

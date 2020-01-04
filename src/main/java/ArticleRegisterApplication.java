@@ -1,5 +1,3 @@
-package repositories;
-
 import models.User;
 import usecases.impl.*;
 import usecases.usecase.*;
@@ -16,6 +14,10 @@ public class ArticleRegisterApplication {
         String command = null;
         boolean isAdmin = false;
         boolean isUserHasMultipleRoles = false;
+        ArticleRepository articleRepository = new ArticleRepositoryImpl();
+        UserRepository userRepository = new UserRepositoryImpl();
+        TagRepository tagRepository = new TagRepositoryImpl();
+        CategoryRepository categoryRepository = new CategoryRepositoryImpl();
 
         User user = null;
         while (true) {
@@ -24,23 +26,16 @@ public class ArticleRegisterApplication {
                 System.out.println("what do you want? ( sign up | login ): ");
                 command = scanner.nextLine();
                 //----------------------------------------------------------
-
                 if (command.equalsIgnoreCase("sign up")) {
-                    SignUpUseCase signUpUseCase = new SignUpUseCaseImpl();
-                    signUpUseCase.signUp();
+                    userRepository.signUp();
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("login")) {
-                    LoginUseCase loginUseCase = new LoginUseCaseImpl();
-                    user = loginUseCase.login();
-
+                    user = userRepository.login();
 
                     if (user != null) {
                         System.out.println("LOGIN SUCCESSFUL !!!");
-                        isUserHasMultipleRoles = new DefineUserWithMultipleRolesUseCaseImpl()
-                                .isUserHasMultipleRoles(user);
+                        isUserHasMultipleRoles = userRepository.isUserHasMultipleRoles(user);
 
                         if (isUserHasMultipleRoles) {
                             System.out.println("you have multiple roles . choose your role to login: ( admin | writer )");
@@ -53,8 +48,8 @@ public class ArticleRegisterApplication {
                             } else {
                                 System.out.println("WRONG COMMAND !!!");
                             }
-                        }else {
-                            isAdmin = new DefineAdminUseCaseImpl().isAdmin(user);
+                        } else {
+                            isAdmin = userRepository.isAdmin(user);
                         }
                         if (isAdmin) {
                             System.out.println("HELLO ADMIN !!!");
@@ -67,173 +62,104 @@ public class ArticleRegisterApplication {
                 } else {
                     System.out.println("WRONG COMMAND !!!");
                 }
-
             }
-
             //after login---------------------------------------------------
             if (user != null && isAdmin) {
                 System.out.println("what do you want? ( show articles | show one | change pass |" +
                         " dashboard | delete article | search | edit user role | publish | unPublish " +
                         "| new tag | new category | logout  ): ");
                 command = scanner.nextLine();
-
                 //----------------------------------------------------------
-
                 if (command.equalsIgnoreCase("show articles")) {
-                    ShowAllArticlesByAdminUseCase showAllArticlesUseCase =
-                            new ShowAllArticlesByAdminUseCaseImpl();
-                    showAllArticlesUseCase.show();
+                    articleRepository.showAll();
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("show one")) {
                     System.out.println("enter article id :");
                     Long id = Long.parseLong(scanner.nextLine());
-                    ShowSpecificArticleByAdminUseCase showSpecificArticleUseCase =
-                            new ShowSpecificArticleByAdminUseCaseImpl();
-                    showSpecificArticleUseCase.show(id);
+                    articleRepository.showSpecificArticle(id);
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("publish")) {
                     System.out.println("enter article id: ");
                     Long id = Long.parseLong(scanner.nextLine());
-                    PublishArticleByAdminUseCase publishArticleUseCase =
-                            new PublishArticleByAdminUseCaseImpl();
-                    publishArticleUseCase.publish(id, currentDate());
+                    articleRepository.publish(id, currentDate());
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("unPublish")) {
                     System.out.println("enter article id: ");
                     Long id = Long.parseLong(scanner.nextLine());
-                    UnPublishArticleByAdminUseCase unPublishArticleByAdminUseCase =
-                            new UnPublishArticleByAdminUseCaseImpl();
-                    unPublishArticleByAdminUseCase.unPublish(id, currentDate());
+                    articleRepository.unPublish(id, currentDate());
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("delete article")) {
                     System.out.println("enter article id: ");
                     Long id = Long.parseLong(scanner.nextLine());
-                    DeleteArticleByAdminUseCase deleteArticleUseCase =
-                            new DeleteArticleByAdminUseCaseImpl();
-                    deleteArticleUseCase.delete(id);
+                    articleRepository.delete(id);
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("edit user role")) {
-                    ChangeUserRoleByAdminUseCase changeUserRoleByAdminUseCase =
-                            new ChangeUserRoleByAdminUseCaseImpl();
-                    changeUserRoleByAdminUseCase.change();
+                    userRepository.changeRole();
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("new tag")) {
-                    CreateNewTagByAdminUseCase createNewTagByAdminUseCase
-                            = new CreateNewTagByAdminUseCaseImpl();
-                    createNewTagByAdminUseCase.create();
+                    tagRepository.create();
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("new category")) {
-                    CreateNewCategoryByAdminUseCase createNewCategoryByAdminUseCase
-                            = new CreateNewCategoryByAdminUseCaseImpl();
-                    createNewCategoryByAdminUseCase.create();
+                    categoryRepository.create();
                 }
-
                 //----------------------------------------------------------
-
-
                 else if (command.equalsIgnoreCase("change pass")) {
-                    ChangePasswordUseCase changePasswordUseCase =
-                            new ChangePasswordUseCaseImpl();
-                    changePasswordUseCase.changePass(user.getUsername());
+                    userRepository.changePass(user.getUsername());
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("dashboard")) {
-                    CountAllArticlesOfUserUseCase countAllArticlesOfUserUseCase =
-                            new CountAllArticlesOfUserUseCaseImpl();
-                    CountPublishedArticlesOfUserUseCase countPublishedArticlesOfUserUseCase =
-                            new CountPublishedArticlesOfUserUseCaseImpl();
                     System.out.println("quantity of your articles: " +
-                            countAllArticlesOfUserUseCase.count(user));
-
+                            articleRepository.countArticlesOfUser(user));
                     System.out.println("quantity of your published articles: " +
-                            countPublishedArticlesOfUserUseCase.count(user));
+                            articleRepository.countPublishedArticle(user));
                 }
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("search")) {
                     System.out.println("enter title for search: ");
                     String title = scanner.nextLine();
-                    new SearchTitleByAdminUseCaseImpl().search(title);
+                    articleRepository.searchByTitle(title);
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("logout")) {
                     user = null;
                 } else {
                     System.out.println("wrong command !!!");
                 }
-
-                //----------------------------------------------------------
             }
+            //----------------------------------------------------------
             if (user != null && !isAdmin) {
 
                 System.out.println("what do you want? ( new article | edit | show my articles" +
                         " | change pass | logout)");
                 command = scanner.nextLine();
-
                 //----------------------------------------------------------
                 if (command.equalsIgnoreCase("new article")) {
-                    ShowListOfCategoriesUseCase showListOfCategoriesUseCase =
-                            new ShowListOfCategoriesUseCaseImpl();
-                    showListOfCategoriesUseCase.show();
-
-                    CreateNewArticleByWriterUseCase createNewArticleByWriterUseCase =
-                            new CreateNewArticleByWriterUseCaseImpl();
-                    createNewArticleByWriterUseCase.create(user, currentDate());
-
+                    categoryRepository.show();
+                    articleRepository.create(user, currentDate());
                     //----------------------------------------------------------
                 } else if (command.equalsIgnoreCase("show my articles")) {
-                    ShowUserArticlesAfterLoginByWriterUseCase showUserArticlesAfterLoginUseCase =
-                            new ShowUserArticlesAfterLoginByWriterUseCaseImpl();
-                    showUserArticlesAfterLoginUseCase.show(user.getId());
+                    articleRepository.showUserArticlesAfterLogin(user.getId());
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("edit") &&
                         new SpecifyExistanceOfUserArticleUseCaseImpl().specify(user.getId())) {
 
                     System.out.println("enter article id: ");
                     Long id = Long.parseLong(scanner.nextLine());
-                    EditArticleByWriterUseCase editArticleUseCase =
-                            new EditArticleByWriterUseCaseImpl();
-                    editArticleUseCase.edit(id, user, currentDate());
-
+                    articleRepository.edit(id, user, currentDate());
                 }
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("change pass")) {
-                    ChangePasswordUseCase changePasswordUseCase =
-                            new ChangePasswordUseCaseImpl();
-                    changePasswordUseCase.changePass(user.getUsername());
+                    userRepository.changePass(user.getUsername());
                 }
-
                 //----------------------------------------------------------
-
                 else if (command.equalsIgnoreCase("logout")) {
                     user = null;
                 } else {
@@ -248,5 +174,4 @@ public class ArticleRegisterApplication {
         LocalDateTime now = LocalDateTime.now();
         return date.format(now);
     }
-
 }

@@ -1,9 +1,10 @@
-package usecases.usecase;
+package repositories.interfaces;
 
+import models.Article;
 import models.User;
 
 public interface ArticleRepository {
-    void create(User user, String currentDate);
+    Article create(User user, String currentDate);
 
     void edit(Long id, User user,String currentDate);
 

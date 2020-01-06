@@ -1,10 +1,13 @@
-package usecases.impl;
+package repositories.impl;
 
 import confighibernate.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.BeginHibernateUseCase;
+import repositories.interfaces.BeginHibernateUseCase;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class BeginHibernateUseCaseImpl implements BeginHibernateUseCase {
     @Override
     public void begin() {

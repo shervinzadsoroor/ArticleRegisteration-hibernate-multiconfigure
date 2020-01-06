@@ -1,9 +1,9 @@
-package usecases.impl;
+package repositories.impl;
 
 import confighibernate.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.SpecifyExistanceOfUserArticleUseCase;
+import repositories.interfaces.SpecifyExistanceOfUserArticleUseCase;
 
 import java.util.List;
 

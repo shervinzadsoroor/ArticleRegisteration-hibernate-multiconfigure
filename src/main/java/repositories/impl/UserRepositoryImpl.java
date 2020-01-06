@@ -1,12 +1,13 @@
-package usecases.impl;
+package repositories.impl;
 
 import confighibernate.HibernateUtil;
+import models.Address;
 import models.Role;
 import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import usecases.usecase.UserRepository;
+import repositories.interfaces.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -223,25 +224,48 @@ public class UserRepositoryImpl implements UserRepository {
         return user;
     }
 
-    public void signUp() {
-        Scanner scanner = new Scanner(System.in);
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    public Address getUserAddress() {
 
-        //get session
-        Session session = sessionFactory.openSession();
-        //transaction start
-        session.beginTransaction();
-        //====================================
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("country: ");
+        String country = scanner.nextLine();
+        System.out.println("city: ");
+        String city = scanner.nextLine();
+        System.out.println("street: ");
+        String street = scanner.nextLine();
+        System.out.println("number: ");
+        int number = (Integer.parseInt(scanner.nextLine()));
+        Address address = new Address(country, city, street, number);
+        return address;
+    }
+
+    public User getUserInfo() {
+
+        Scanner scanner = new Scanner(System.in);
         System.out.println("username: ");
         String username = scanner.nextLine();
-
         System.out.println("national code: ");
         String nationalCode = scanner.nextLine();
         System.out.println("birthday: ");
         String birthday = scanner.nextLine();
         User user = new User(username, nationalCode, nationalCode, birthday); // password is the national code for the first time
-        Long id = (Long) session.save(user);
-        System.out.println("sign up successfully done!!!\nyour id is:" + id);
+        return user;
+    }
+
+    public void signUp(User user, Address address) {
+
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        //get session
+        Session session = sessionFactory.openSession();
+        //transaction start
+        session.beginTransaction();
+        //====================================
+
+        List<Address> addresses = new ArrayList<>();
+        addresses.add(address);
+        user.setAddresses(addresses);
+        session.save(user);
+        System.out.println("sign up successfully done!!!");
 
         //defines the user as writer
         Role role = session.find(Role.class, 2L); // returns writer
@@ -255,5 +279,17 @@ public class UserRepositoryImpl implements UserRepository {
         session.getTransaction().commit();
         session.close();
 
+    }
+
+    public void deleteUser(Long id) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        User user = session.load(User.class,id);
+        session.remove(user);
+
+        session.getTransaction().commit();
+        session.close();
     }
 }

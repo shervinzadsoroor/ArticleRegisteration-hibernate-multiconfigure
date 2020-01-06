@@ -1,7 +1,9 @@
+import models.Address;
 import models.User;
-import usecases.impl.*;
-import usecases.usecase.*;
+import repositories.impl.*;
+import repositories.interfaces.*;
 
+import javax.persistence.Embedded;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -27,7 +29,10 @@ public class ArticleRegisterApplication {
                 command = scanner.nextLine();
                 //----------------------------------------------------------
                 if (command.equalsIgnoreCase("sign up")) {
-                    userRepository.signUp();
+
+                    user = userRepository.getUserInfo();
+                    Address address = userRepository.getUserAddress();
+                    userRepository.signUp(user, address);
                 }
                 //----------------------------------------------------------
                 else if (command.equalsIgnoreCase("login")) {
@@ -72,6 +77,11 @@ public class ArticleRegisterApplication {
                 //----------------------------------------------------------
                 if (command.equalsIgnoreCase("show articles")) {
                     articleRepository.showAll();
+                }
+                else if (command.equalsIgnoreCase("delete user")){
+                    System.out.println("enter user id to delete:");
+                    Long id = Long.parseLong(scanner.nextLine());
+                    userRepository.deleteUser(id);
                 }
                 //----------------------------------------------------------
                 else if (command.equalsIgnoreCase("show one")) {

@@ -6,7 +6,7 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost/articleregister2?createDatabaseIfNotExist=true
+            jdbc:mysql://localhost/articleregister3?createDatabaseIfNotExist=true
         </property>
 
         <property name="hibernate.connection.driver_class">
@@ -27,6 +27,7 @@
         <mapping class="models.Article"/>
         <mapping class="models.Role"/>
         <mapping class="models.Tag"/>
+        <mapping class="models.Address"/>
 
 
     </session-factory>

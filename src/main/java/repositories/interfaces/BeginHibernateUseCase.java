@@ -1,4 +1,4 @@
-package usecases.usecase;
+package repositories.interfaces;
 
 public interface BeginHibernateUseCase {
     public void begin();

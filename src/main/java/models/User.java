@@ -1,5 +1,8 @@
 package models;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +28,32 @@ public class User {
     @Column(name = "birthday", length = 10)
     private String birthday;
 
+    //-----------------------------------------------------
     @OneToMany(mappedBy = "user")
     private List<Article> articles = new ArrayList<>();
 
     public List<Article> getArticles() {
         return articles;
     }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
+    //-----------------------------------------------------
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Address> addresses = new ArrayList<>();
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+    //-----------------------------------------------------
 
 
     @ManyToMany(cascade = {CascadeType.ALL})
@@ -49,9 +72,6 @@ public class User {
         this.roles = roles;
     }
 
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
-    }
     //constructor =======================================
 
     public User() {

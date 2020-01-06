@@ -23,5 +23,11 @@ C:/Users/hp/IdeaProjects/ArticleRegisterationWthHibernate/src/main/resources/hib
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/articleregister2</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="articleRegister3@localhost" uuid="dd7d32af-8c5e-4fec-aa0c-8bd89f0db328">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/articleRegister3</jdbc-url>
+    </data-source>
   </component>
 </project>

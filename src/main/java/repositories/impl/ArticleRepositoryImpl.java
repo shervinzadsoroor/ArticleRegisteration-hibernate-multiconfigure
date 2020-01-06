@@ -1,4 +1,4 @@
-package usecases.impl;
+package repositories.impl;
 
 import confighibernate.HibernateUtil;
 import models.Article;
@@ -8,15 +8,15 @@ import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import usecases.usecase.ArticleRepository;
+import repositories.interfaces.ArticleRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ArticleRepositoryImpl implements ArticleRepository {
-    public void create(User user, String currentDate) {
 
+    public Article create(User user, String currentDate) {
         Scanner scanner = new Scanner(System.in);
         Scanner scannerLong = new Scanner(System.in);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -109,6 +109,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         //transaction commit
         session.getTransaction().commit();
         session.close();
+        return article;
     }
 
     public void edit(Long id, User user,String currentDate) {

@@ -1,5 +1,6 @@
-package usecases.usecase;
+package repositories.interfaces;
 
+import models.Address;
 import models.User;
 
 public interface UserRepository {
@@ -13,5 +14,10 @@ public interface UserRepository {
 
     User login();
 
-    void signUp();
+    User getUserInfo();
+
+    Address getUserAddress();
+
+    void signUp(User user, Address address);
+    void deleteUser(Long id);
 }

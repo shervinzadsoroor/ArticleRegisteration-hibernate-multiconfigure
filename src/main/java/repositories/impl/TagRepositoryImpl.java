@@ -1,10 +1,10 @@
-package usecases.impl;
+package repositories.impl;
 
 import confighibernate.HibernateUtil;
 import models.Tag;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import usecases.usecase.TagRepository;
+import repositories.interfaces.TagRepository;
 
 import java.util.Scanner;
 

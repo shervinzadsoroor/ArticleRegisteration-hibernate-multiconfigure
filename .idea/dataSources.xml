@@ -29,5 +29,41 @@ C:/Users/hp/IdeaProjects/ArticleRegisterationWthHibernate/src/main/resources/hib
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/articleRegister3</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="articleregister4@localhost" uuid="2a6f466f-b23f-419e-8287-a12f4497a879">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/articleregister4</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.dbOne.cfg.xml/Hibernate" uuid="ab11c963-5eb8-4f64-84ff-45f801eb91fd">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/hp/IdeaProjects/ArticleRegisterationWthHibernate2 - with repository - multiConfig/src/main/resources/hibernate.dbOne.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost/articleregister3?createDatabaseIfNotExist=true</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.dbTwo.cfg.xml/Hibernate" uuid="b50b04ce-709f-4f3f-bb98-0d7bc5ccce37">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/hp/IdeaProjects/ArticleRegisterationWthHibernate2 - with repository - multiConfig/src/main/resources/hibernate.dbTwo.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost/articleregister4?createDatabaseIfNotExist=true</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.h2.cfg.xml/Hibernate" uuid="099613cd-5508-411d-91ee-07e4bb22b15b">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/hp/IdeaProjects/ArticleRegisterationWthHibernate2 - with repository - multiConfig/src/main/resources/hibernate.h2.cfg.xml</remarks>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:mem:articleRegisterTest</jdbc-url>
+    </data-source>
   </component>
 </project>

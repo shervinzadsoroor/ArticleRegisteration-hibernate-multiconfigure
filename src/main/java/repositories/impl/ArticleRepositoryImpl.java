@@ -266,7 +266,8 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         session.close();
     }
 
-    public void showUserArticlesAfterLogin(Long id) { SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    public void showUserArticlesAfterLogin(Long id) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         //get session
         Session session = sessionFactory.openSession();

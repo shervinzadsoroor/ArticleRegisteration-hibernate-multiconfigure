@@ -14,9 +14,15 @@
       <configuration>
         <datasource-map>
           <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="hibernate.dbOne.cfg.xml" value="ab11c963-5eb8-4f64-84ff-45f801eb91fd" />
+          <unit-entry name="hibernate.dbTwo.cfg.xml" value="b50b04ce-709f-4f3f-bb98-0d7bc5ccce37" />
+          <unit-entry name="hibernate.h2.cfg.xml" value="099613cd-5508-411d-91ee-07e4bb22b15b" />
         </datasource-map>
         <naming-strategy-map />
-        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.db2.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.dbOne.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.dbTwo.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.h2.cfg.xml" />
       </configuration>
     </facet>
   </component>

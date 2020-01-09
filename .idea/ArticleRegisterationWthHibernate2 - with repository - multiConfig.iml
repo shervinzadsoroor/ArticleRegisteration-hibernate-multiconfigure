@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
   <component name="FacetManager">
-    <facet type="jpa" name="JPA">
-      <configuration>
-        <setting name="validation-enabled" value="true" />
-        <datasource-mapping>
-          <factory-entry name="Entities" value="dd7d32af-8c5e-4fec-aa0c-8bd89f0db328" />
-        </datasource-mapping>
-        <naming-strategy-map />
-      </configuration>
-    </facet>
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
           <unit-entry name="hibernate.cfg.xml" />
-          <unit-entry name="hibernate.dbOne.cfg.xml" value="ab11c963-5eb8-4f64-84ff-45f801eb91fd" />
-          <unit-entry name="hibernate.dbTwo.cfg.xml" value="b50b04ce-709f-4f3f-bb98-0d7bc5ccce37" />
+          <unit-entry name="hibernate.dbOne.cfg.xml" value="dd7d32af-8c5e-4fec-aa0c-8bd89f0db328" />
+          <unit-entry name="hibernate.dbTwo.cfg.xml" value="2a6f466f-b23f-419e-8287-a12f4497a879" />
           <unit-entry name="hibernate.h2.cfg.xml" value="099613cd-5508-411d-91ee-07e4bb22b15b" />
         </datasource-map>
         <naming-strategy-map />

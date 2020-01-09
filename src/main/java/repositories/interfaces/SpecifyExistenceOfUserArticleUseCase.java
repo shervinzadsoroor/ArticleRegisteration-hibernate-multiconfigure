@@ -1,6 +1,6 @@
 package repositories.interfaces;
 
-public interface SpecifyExistanceOfUserArticleUseCase {
+public interface SpecifyExistenceOfUserArticleUseCase {
     public boolean specify(Long id);
 }
 

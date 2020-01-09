@@ -1,13 +1,12 @@
 package models;
 
-import org.hibernate.annotations.Cascade;
-
+import javax.persistence.Entity;
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "address")
-public class Address {
+public class Address extends models.Entity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,4 +84,5 @@ public class Address {
     public void setNumber(int number) {
         this.number = number;
     }
+
 }

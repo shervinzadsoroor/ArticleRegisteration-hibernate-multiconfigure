@@ -1,15 +1,13 @@
 package models;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-
+import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class User extends models.Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
@@ -125,7 +123,6 @@ public class User {
         this.birthday = birthday;
     }
 
-
     @Override
     public String toString() {
         return "User{" +
@@ -134,7 +131,6 @@ public class User {
                 ", nationalCode='" + nationalCode + '\'' +
                 ", password='" + password + '\'' +
                 ", birthday='" + birthday + '\'' +
-//                ", articles=" + articles +
                 '}';
     }
 }

@@ -1,12 +1,16 @@
 package models;
 
+import org.hibernate.annotations.Fetch;
+
+import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Article")
-public class Article {
+
+public class Article extends models.Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
     @Column(name = "id")
@@ -184,4 +188,6 @@ public class Article {
     public void printBrief() {
         System.out.printf("%-5d%-20s%-30s\n", id, title, brief);
     }
+
+
 }

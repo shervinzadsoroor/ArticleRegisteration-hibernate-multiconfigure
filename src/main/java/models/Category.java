@@ -1,10 +1,11 @@
 package models;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
 //@Table(name = "Category")
-public class Category {
+public class Category extends models.Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment
     @Column(name = "id")

@@ -1,12 +1,13 @@
 package models;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 
-public class Role {
+public class Role extends models.Entity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment

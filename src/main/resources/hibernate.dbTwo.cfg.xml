@@ -23,6 +23,12 @@
 
         <!-- Mapping -->
         <mapping class="models.UserInfo"/>
+        <mapping class="models.User"/>
+        <mapping class="models.Category"/>
+        <mapping class="models.Article"/>
+        <mapping class="models.Role"/>
+        <mapping class="models.Tag"/>
+        <mapping class="models.Address"/>
 
 
     </session-factory>

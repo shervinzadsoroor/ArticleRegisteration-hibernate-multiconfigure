@@ -1,10 +1,7 @@
 package repositories.impl;
 
 import confighibernate.HibernateUtil;
-import models.Article;
-import models.Category;
-import models.Tag;
-import models.User;
+import models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -13,6 +10,8 @@ import repositories.interfaces.ArticleRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class ArticleRepositoryImpl implements ArticleRepository {
 
@@ -112,7 +111,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         return article;
     }
 
-    public void edit(Long id, User user,String currentDate) {
+    public void edit(Long id, User user, String currentDate) {
 
         Scanner scanner = new Scanner(System.in);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -363,7 +362,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
             }
         }
         if (isTitleExist) {
-            List<Article> articles2 = session.createQuery("from Article where title=:titleName")
+            List<Article> articles2 = session.createQuery("from Article where title like :titleName")
                     .setParameter("titleName", title)
                     .list();
 
@@ -431,5 +430,15 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         //----------------------------------------------------
         session.getTransaction().commit();
         session.close();
+    }
+
+
+    public Article findAll(Predicate<Entity> predicate) {
+        return null;
+    }
+
+
+    public void findAll(Function<Entity, Entity> function) {
+
     }
 }

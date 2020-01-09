@@ -1,9 +1,14 @@
+import confighibernate.HibernateUtil;
 import models.Address;
 import models.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import repositories.impl.*;
-import repositories.interfaces.*;
+import repositories.interfaces.ArticleRepository;
+import repositories.interfaces.CategoryRepository;
+import repositories.interfaces.TagRepository;
+import repositories.interfaces.UserRepository;
 
-import javax.persistence.Embedded;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -109,7 +114,14 @@ public class ArticleRegisterApplication {
                 }
                 //----------------------------------------------------------
                 else if (command.equalsIgnoreCase("edit user role")) {
+                    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+                    Session session = sessionFactory.openSession();
+                    session.beginTransaction();
+
                     userRepository.changeRole();
+
+                    session.getTransaction().commit();
+                    session.close();
                 }
                 //----------------------------------------------------------
                 else if (command.equalsIgnoreCase("new tag")) {

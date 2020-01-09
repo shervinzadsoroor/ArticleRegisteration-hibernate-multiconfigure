@@ -3,11 +3,11 @@ package repositories.impl;
 import confighibernate.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import repositories.interfaces.SpecifyExistanceOfUserArticleUseCase;
+import repositories.interfaces.SpecifyExistenceOfUserArticleUseCase;
 
 import java.util.List;
 
-public class SpecifyExistanceOfUserArticleUseCaseImpl implements SpecifyExistanceOfUserArticleUseCase {
+public class SpecifyExistanceOfUserArticleUseCaseImpl implements SpecifyExistenceOfUserArticleUseCase {
     @Override
     public boolean specify(Long id) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

@@ -1,2 +1,0 @@
-INSERT INTO articleregister2.article (id, brief, content, createDate, isPublished, lastUpdateDate, publishDate, title, category_id, user_id) VALUES (1, 'brief1', 'content1', '2020/01/01', 'no', '2020/01/01', null, 'title1', 1, 5);
-INSERT INTO articleregister2.article (id, brief, content, createDate, isPublished, lastUpdateDate, publishDate, title, category_id, user_id) VALUES (3, 'brief3', 'content3', '2020/01/01', 'no', '2020/01/01', null, 'title3', 3, 2);

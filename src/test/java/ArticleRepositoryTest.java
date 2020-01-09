@@ -43,8 +43,5 @@ public class ArticleRepositoryTest {
         assertNotNull(userList);
         assertEquals(1, userList.size());
 
-        String str = """
-                """;
-
     }
 }

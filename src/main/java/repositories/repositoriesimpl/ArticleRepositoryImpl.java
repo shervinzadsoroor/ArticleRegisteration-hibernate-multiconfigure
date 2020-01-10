@@ -1,11 +1,11 @@
-package repositories.impl;
+package repositories.repositoriesimpl;
 
 import confighibernate.HibernateUtil;
 import models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import repositories.interfaces.ArticleRepository;
+import repositories.interfacesRepositories.ArticleRepository;
 
 import java.util.ArrayList;
 import java.util.List;

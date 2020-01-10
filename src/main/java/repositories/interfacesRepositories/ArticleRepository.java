@@ -1,7 +1,6 @@
-package repositories.interfaces;
+package repositories.interfacesRepositories;
 
 import models.Article;
-import models.Entity;
 import models.User;
 
 public interface ArticleRepository {

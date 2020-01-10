@@ -1,10 +1,10 @@
-package repositories.impl;
+package repositories.repositoriesimpl;
 
 import confighibernate.HibernateUtil;
 import models.Category;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import repositories.interfaces.CategoryRepository;
+import repositories.interfacesRepositories.CategoryRepository;
 
 import java.util.List;
 import java.util.Scanner;

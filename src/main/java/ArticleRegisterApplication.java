@@ -3,15 +3,17 @@ import models.Address;
 import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import repositories.impl.*;
-import repositories.interfaces.ArticleRepository;
-import repositories.interfaces.CategoryRepository;
-import repositories.interfaces.TagRepository;
-import repositories.interfaces.UserRepository;
+import repositories.repositoriesimpl.*;
+import repositories.interfacesRepositories.ArticleRepository;
+import repositories.interfacesRepositories.CategoryRepository;
+import repositories.interfacesRepositories.TagRepository;
+import repositories.interfacesRepositories.UserRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 public class ArticleRegisterApplication {
 
@@ -75,7 +77,7 @@ public class ArticleRegisterApplication {
             }
             //after login---------------------------------------------------
             if (user != null && isAdmin) {
-                System.out.println("what do you want? ( show articles | show one | change pass |" +
+                System.out.println("what do you want? ( show articles | show some articles | show one | change pass |" +
                         " dashboard | delete article | search | edit user role | publish | unPublish " +
                         "| new tag | new category | logout  ): ");
                 command = scanner.nextLine();
@@ -93,6 +95,19 @@ public class ArticleRegisterApplication {
                     System.out.println("enter article id :");
                     Long id = Long.parseLong(scanner.nextLine());
                     articleRepository.showSpecificArticle(id);
+                }
+                //----------------------------------------------------------
+
+                else if (command.equalsIgnoreCase("show some articles")){
+                    System.out.println("enter beginning of bound number: ");
+                    int first = scanner.nextInt();
+                    System.out.println("enter end of bound number: ");
+                    int second = scanner.nextInt();
+                    Predicate<User> userPredicate = a -> a.getId() >= first && a.getId() <= second;
+                    List<User> users = user.findAll(userPredicate);
+                    for (User u : users) {
+                        System.out.println(u.toString());
+                    }
                 }
                 //----------------------------------------------------------
                 else if (command.equalsIgnoreCase("publish")) {

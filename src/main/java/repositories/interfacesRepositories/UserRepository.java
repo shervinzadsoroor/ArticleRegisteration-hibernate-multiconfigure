@@ -1,4 +1,4 @@
-package repositories.interfaces;
+package repositories.interfacesRepositories;
 
 import models.Address;
 import models.User;

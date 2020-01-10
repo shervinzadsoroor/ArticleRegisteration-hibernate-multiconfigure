@@ -1,4 +1,4 @@
-package repositories.interfaces;
+package repositories.interfacesRepositories;
 
 public interface TagRepository {
     void create();

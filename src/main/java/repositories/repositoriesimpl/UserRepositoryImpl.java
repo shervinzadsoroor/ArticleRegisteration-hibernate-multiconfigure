@@ -1,4 +1,4 @@
-package repositories.impl;
+package repositories.repositoriesimpl;
 
 import confighibernate.HibernateUtil;
 import models.Address;
@@ -7,7 +7,7 @@ import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import repositories.interfaces.UserRepository;
+import repositories.interfacesRepositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

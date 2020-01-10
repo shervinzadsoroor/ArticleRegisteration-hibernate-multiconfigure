@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public abstract class Entity<E, T extends Entity> {
-    SessionFactory sessionFactory;
-    Session session;
+public abstract class Entity <E, T extends Entity> {
+    private SessionFactory sessionFactory;
+    private Session session;
 
     public List<E> findAll(Predicate<E> predicate) {
         sessionFactory = HibernateUtil.getSessionFactory();
@@ -33,14 +33,21 @@ public abstract class Entity<E, T extends Entity> {
         return returnList;
     }
 
-    public List<E> findAll(Function<T, E> function) {
-        List<E> Eentities = new ArrayList<>();
-        List<T> Tentities = new ArrayList<>();
-        for (T t : Tentities) {
-            Eentities.add(function.apply(t));
-        }
+    public void saveAsAnotherEntity(Function<E, T> function) {
+        sessionFactory = HibernateUtil.getSessionFactory();
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        //-------------------------------------------
+//        List<E> Eentities = new ArrayList<>();
+//        List<T> Tentities = new ArrayList<>();
+//        for (E e : Eentities) {
+//            Tentities.add(function.apply(e));
+//        }
+        //todo
+        //-------------------------------------------
+        session.getTransaction().commit();
+        session.close();
 
-        return Eentities;
     }
 
 }
